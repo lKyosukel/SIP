@@ -1,0 +1,19 @@
+const Web3 = require('web3');
+const contractABI = [/* ABI from compiled contract */];
+const contractAddress = '0xYourContractAddress';
+
+const web3 = new Web3('http://localhost:8545'); // Connect to your private network
+const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+const deviceAddress = '0xDeviceAddress';
+const deviceId = 'your-device-id';
+
+// Function to send heartbeat
+async function sendHeartbeat() {
+    const accounts = await web3.eth.getAccounts();
+    const receipt = await contract.methods.sendHeartbeat(deviceId).send({ from: deviceAddress });
+    console.log('Heartbeat sent:', receipt);
+}
+
+// Periodically send heartbeat
+setInterval(sendHeartbeat, 60000); // Send heartbeat every 60 seconds

@@ -1,0 +1,5 @@
+const IoTDeviceSecurity = artifacts.require("IoTDeviceSecurity");
+
+module.exports = function (deployer) {
+  deployer.deploy(IoTDeviceSecurity);
+};
